@@ -34,6 +34,20 @@ if (rootProject.file('local.properties').exists()) {
     apply from: '../publish.gradle'
 }
 
+// Minimal publication for JitPack when local.properties is absent
+if (!rootProject.file('local.properties').exists()) {
+    apply plugin: 'maven-publish'
+    afterEvaluate {
+        publishing {
+            publications {
+                release(MavenPublication) {
+                    from components.release
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     implementation "androidx.appcompat:appcompat:${cfgs.version_appcompat}"
     implementation "androidx.recyclerview:recyclerview:${cfgs.version_recyclerview}"
