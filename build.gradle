@@ -5,10 +5,11 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        maven { url 'https://mirrors.huaweicloud.com/repository/maven/' }
+//        maven {
+//            url 'https://maven.google.com/'
+//            name 'Google'
+//        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.4.2'
@@ -23,10 +24,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+        maven { url 'https://mirrors.huaweicloud.com/repository/maven/' }
+//        maven {
+//            url 'https://maven.google.com/'
+//            name 'Google'
+//        }
     }
 }
 

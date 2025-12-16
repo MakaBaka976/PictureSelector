@@ -1057,24 +1057,31 @@ public class PictureSelectorPreviewFragment extends PictureCommonFragment {
     private void deletePreview() {
         if (isDisplayDelete) {
             if (selectorConfig.onExternalPreviewEventListener != null) {
-                selectorConfig.onExternalPreviewEventListener.onPreviewDelete(viewPager.getCurrentItem());
-                int currentItem = viewPager.getCurrentItem();
-                mData.remove(currentItem);
-                if (mData.size() == 0) {
-                    handleExternalPreviewBack();
-                    return;
-                }
-                titleBar.setTitle(getString(R.string.ps_preview_image_num,
-                        curPosition + 1, mData.size()));
-                totalNum = mData.size();
-                curPosition = currentItem;
-                if (viewPager.getAdapter() != null) {
-                    viewPager.setAdapter(null);
-                    viewPager.setAdapter(viewPageAdapter);
-                }
-                viewPager.setCurrentItem(curPosition, false);
+                selectorConfig.onExternalPreviewEventListener.onPreviewDelete(PictureSelectorPreviewFragment.this,
+                        viewPager.getCurrentItem());
             }
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void commitDeleteAt(int position) {
+        int currentItem = position;
+        if (mData.size() > currentItem) {
+            mData.remove(currentItem);
+        }
+        if (mData.size() == 0) {
+            handleExternalPreviewBack();
+            return;
+        }
+        titleBar.setTitle(getString(R.string.ps_preview_image_num,
+                curPosition + 1, mData.size()));
+        totalNum = mData.size();
+        curPosition = currentItem;
+        if (viewPager.getAdapter() != null) {
+            viewPager.setAdapter(null);
+            viewPager.setAdapter(viewPageAdapter);
+        }
+        viewPager.setCurrentItem(curPosition, false);
     }
 
     /**

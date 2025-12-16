@@ -57,6 +57,9 @@ import androidx.recyclerview.widget.SimpleItemAnimator;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.kongzue.dialogx.dialogs.MessageDialog;
+import com.kongzue.dialogx.interfaces.BaseDialog;
+import com.kongzue.dialogx.interfaces.OnDialogButtonClickListener;
 import com.luck.lib.camerax.CameraImageEngine;
 import com.luck.lib.camerax.SimpleCameraX;
 import com.luck.lib.camerax.listener.OnSimpleXPermissionDeniedListener;
@@ -81,6 +84,7 @@ import com.luck.picture.lib.config.SelectModeConfig;
 import com.luck.picture.lib.config.SelectorConfig;
 import com.luck.picture.lib.decoration.GridSpacingItemDecoration;
 import com.luck.picture.lib.dialog.RemindDialog;
+import com.luck.picture.lib.dialog.PictureCommonDialog;
 import com.luck.picture.lib.engine.CompressEngine;
 import com.luck.picture.lib.engine.CompressFileEngine;
 import com.luck.picture.lib.engine.CropEngine;
@@ -841,9 +845,20 @@ public class MainActivity extends AppCompatActivity implements IBridgePictureBeh
     private class MyExternalPreviewEventListener implements OnExternalPreviewEventListener {
 
         @Override
-        public void onPreviewDelete(int position) {
-            mAdapter.remove(position);
-            mAdapter.notifyItemRemoved(position);
+        public void onPreviewDelete(Fragment fragment, int position) {
+            MessageDialog.show("提示", "要删除这张照片吗？", "确定", "取消")
+                    .setOkButtonClickListener(new OnDialogButtonClickListener() {
+
+                        @Override
+                        public boolean onClick(BaseDialog dialog, View v) {
+                            mAdapter.remove(position);
+                            mAdapter.notifyItemRemoved(position);
+                            if (fragment instanceof PictureSelectorPreviewFragment) {
+                                ((PictureSelectorPreviewFragment) fragment).commitDeleteAt(position);
+                            }
+                            return false;
+                        }
+                    });
         }
 
         @Override
@@ -2086,6 +2101,10 @@ public class MainActivity extends AppCompatActivity implements IBridgePictureBeh
                 whiteTitleBarStyle.setTitleTextColor(ContextCompat.getColor(getContext(), R.color.ps_color_black));
                 whiteTitleBarStyle.setTitleCancelTextColor(ContextCompat.getColor(getContext(), R.color.ps_color_53575e));
                 whiteTitleBarStyle.setDisplayTitleBarLine(true);
+                whiteTitleBarStyle.setPreviewTitleLeftBackTintColor(Color.parseColor("#ff00ff"));
+                whiteTitleBarStyle.setPreviewTitleLeftBackMarginStart(30);
+                whiteTitleBarStyle.setPreviewDeleteTintColor(Color.parseColor("#ff00ff"));
+                whiteTitleBarStyle.setPreviewDeleteMarginEnd(30);
 
                 BottomNavBarStyle whiteBottomNavBarStyle = new BottomNavBarStyle();
                 whiteBottomNavBarStyle.setBottomNarBarBackgroundColor(Color.parseColor("#EEEEEE"));

@@ -1,6 +1,7 @@
 package com.luck.picture.lib.interfaces;
 
 import android.content.Context;
+import androidx.fragment.app.Fragment;
 
 import com.luck.picture.lib.entity.LocalMedia;
 
@@ -11,11 +12,12 @@ import com.luck.picture.lib.entity.LocalMedia;
  */
 public interface OnExternalPreviewEventListener {
     /**
-     * 删除图片
+     * 删除图片，由外部弹窗确认后调用Fragment执行删除
      *
+     * @param fragment 当前预览Fragment
      * @param position 删除的下标
      */
-    void onPreviewDelete(int position);
+    void onPreviewDelete(Fragment fragment, int position);
 
     /**
      * 长按下载

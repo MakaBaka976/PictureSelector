@@ -20,6 +20,8 @@ import com.luck.picture.lib.style.PictureSelectorStyle;
 import com.luck.picture.lib.style.TitleBarStyle;
 import com.luck.picture.lib.utils.DensityUtil;
 import com.luck.picture.lib.utils.StyleUtils;
+import androidx.core.graphics.drawable.DrawableCompat;
+import android.graphics.drawable.Drawable;
 
 /**
  * @author：luck
@@ -216,6 +218,19 @@ public class TitleBar extends RelativeLayout implements View.OnClickListener {
             ivDelete.setBackgroundResource(deleteBackgroundResource);
         } else {
             ivDelete.setBackgroundResource(R.drawable.ps_ic_delete);
+        }
+        if (StyleUtils.checkStyleValidity(titleBarStyle.getPreviewDeleteTintColor())) {
+            Drawable bg = ivDelete.getBackground();
+            if (bg != null) {
+                Drawable wrap = DrawableCompat.wrap(bg);
+                DrawableCompat.setTint(wrap, titleBarStyle.getPreviewDeleteTintColor());
+                ivDelete.setBackground(wrap);
+            }
+        }
+        if (StyleUtils.checkSizeValidity(titleBarStyle.getPreviewDeleteMarginEnd())) {
+            RelativeLayout.LayoutParams deleteParams = (LayoutParams) ivDelete.getLayoutParams();
+            deleteParams.setMarginEnd(DensityUtil.dip2px(getContext(), titleBarStyle.getPreviewDeleteMarginEnd()));
+            ivDelete.setLayoutParams(deleteParams);
         }
     }
 

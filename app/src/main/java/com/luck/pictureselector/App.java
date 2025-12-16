@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.camera.camera2.Camera2Config;
 import androidx.camera.core.CameraXConfig;
 
+import com.kongzue.dialogx.DialogX;
 import com.luck.picture.lib.app.IApp;
 import com.luck.picture.lib.app.PictureAppMaster;
 import com.luck.picture.lib.engine.PictureSelectorEngine;
@@ -39,6 +40,7 @@ public class App extends Application implements IApp, CameraXConfig.Provider, Im
     public void onCreate() {
         super.onCreate();
         PictureAppMaster.getInstance().setApp(this);
+        DialogX.init(this);
     }
 
     @Override

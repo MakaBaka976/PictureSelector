@@ -21,6 +21,16 @@ public class TitleBarStyle {
     private int previewTitleLeftBackResource;
 
     /**
+     * 预览标题栏左侧图标tint颜色
+     */
+    private int previewTitleLeftBackTintColor;
+
+    /**
+     * 预览标题栏左侧图标marginStart，单位dp
+     */
+    private int previewTitleLeftBackMarginStart;
+
+    /**
      * 标题栏默认文案
      */
     private String titleDefaultText;
@@ -88,6 +98,16 @@ public class TitleBarStyle {
     private int previewDeleteBackgroundResource;
 
     /**
+     * 外部预览删除图标tint颜色
+     */
+    private int previewDeleteTintColor;
+
+    /**
+     * 外部预览删除图标marginEnd，单位dp
+     */
+    private int previewDeleteMarginEnd;
+
+    /**
      * 标题栏右边默认文本
      */
     private String titleCancelText;
@@ -141,6 +161,22 @@ public class TitleBarStyle {
 
     public void setPreviewTitleLeftBackResource(int previewTitleLeftBackResource) {
         this.previewTitleLeftBackResource = previewTitleLeftBackResource;
+    }
+
+    public int getPreviewTitleLeftBackTintColor() {
+        return previewTitleLeftBackTintColor;
+    }
+
+    public void setPreviewTitleLeftBackTintColor(int color) {
+        this.previewTitleLeftBackTintColor = color;
+    }
+
+    public int getPreviewTitleLeftBackMarginStart() {
+        return previewTitleLeftBackMarginStart;
+    }
+
+    public void setPreviewTitleLeftBackMarginStart(int dp) {
+        this.previewTitleLeftBackMarginStart = dp;
     }
 
     public String getTitleDefaultText() {
@@ -245,6 +281,22 @@ public class TitleBarStyle {
 
     public void setPreviewDeleteBackgroundResource(int previewDeleteBackgroundResource) {
         this.previewDeleteBackgroundResource = previewDeleteBackgroundResource;
+    }
+
+    public int getPreviewDeleteTintColor() {
+        return previewDeleteTintColor;
+    }
+
+    public void setPreviewDeleteTintColor(int color) {
+        this.previewDeleteTintColor = color;
+    }
+
+    public int getPreviewDeleteMarginEnd() {
+        return previewDeleteMarginEnd;
+    }
+
+    public void setPreviewDeleteMarginEnd(int dp) {
+        this.previewDeleteMarginEnd = dp;
     }
 
     public String getTitleCancelText() {

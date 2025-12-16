@@ -8,6 +8,7 @@ import com.luck.picture.lib.R;
 import com.luck.picture.lib.config.SelectorProviders;
 import com.luck.picture.lib.style.TitleBarStyle;
 import com.luck.picture.lib.utils.StyleUtils;
+import com.luck.picture.lib.utils.DensityUtil;
 
 /**
  * @author：luck
@@ -39,6 +40,14 @@ public class PreviewTitleBar extends TitleBar {
         }
         if (StyleUtils.checkStyleValidity(titleBarStyle.getPreviewTitleLeftBackResource())) {
             ivLeftBack.setImageResource(titleBarStyle.getPreviewTitleLeftBackResource());
+        }
+        if (StyleUtils.checkStyleValidity(titleBarStyle.getPreviewTitleLeftBackTintColor())) {
+            ivLeftBack.setColorFilter(titleBarStyle.getPreviewTitleLeftBackTintColor());
+        }
+        if (StyleUtils.checkSizeValidity(titleBarStyle.getPreviewTitleLeftBackMarginStart())) {
+            RelativeLayout.LayoutParams backParams = (LayoutParams) ivLeftBack.getLayoutParams();
+            backParams.setMarginStart(DensityUtil.dip2px(getContext(), titleBarStyle.getPreviewTitleLeftBackMarginStart()));
+            ivLeftBack.setLayoutParams(backParams);
         }
         rlAlbumBg.setOnClickListener(null);
         viewAlbumClickArea.setOnClickListener(null);
