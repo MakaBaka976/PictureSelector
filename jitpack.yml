@@ -1,0 +1,7 @@
+jdk:
+  - openjdk11
+
+install:
+  - ./gradlew -q :selector:assembleRelease
+
+
