@@ -2,7 +2,12 @@ apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 Properties localProperties = new Properties()
-localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+File propFile = project.rootProject.file('local.properties')
+if (!propFile.exists()) {
+    println('Skip publish: local.properties missing')
+    return
+}
+localProperties.load(propFile.newDataInputStream())
 localProperties.each { name, value ->
     project.ext[name] = value
 }

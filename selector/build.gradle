@@ -30,7 +30,9 @@ ext {
     PUBLISH_ARTIFACT_ID = "pictureselector"
 }
 
-apply from: '../publish.gradle'
+if (rootProject.file('local.properties').exists()) {
+    apply from: '../publish.gradle'
+}
 
 dependencies {
     implementation "androidx.appcompat:appcompat:${cfgs.version_appcompat}"
